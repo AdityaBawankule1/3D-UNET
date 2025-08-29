@@ -22,3 +22,37 @@ The implementation uses a patch-based approach to handle large 3D volumes that e
 4. **Comprehensive Training:** 100 epochs with batch size 8
 5. **Evaluation Metrics:** IoU (Intersection over Union) for segmentation quality
 6. **Visualization Tools:** Training curves and qualitative result displays
+
+## Model Arhitecture
+
+- **Parameters:** ~42 million trainable parameters
+- **Backbone:** ResNet-18 (3D version)
+- **Input:** 3D patches (64x64x64 voxels)
+- **Output:** Segmentation masks with same dimensions
+
+## Dataset Requirement
+
+- 3D volumetric images (medical scans, geological samples, etc.)
+- Corresponding segmentation masks/labels
+- Supported formats: NIfTI, NumPy arrays, DICOM
+
+## Workflow
+
+**1. Patchify** 
+Large 3D volumes are divided into smaller 64x64x64 patches to fit GPU memory:
+- Handles volumes of any size
+- Overlapping patches for better edge predictions
+- Maintains spatial relationships
+
+**2. Training**
+- Epochs: 100
+- Batch Size: 8
+- Loss Function: Segmentation loss (binary crossentropy or dice loss)
+- Metrics: IoU (Intersection over Union)
+- Optimization: Adam optimizer
+  
+**3. Unpatchify**
+Patch predictions are reconstructed into full-volume segmentations:
+- Seamless patch stitching
+- Overlap handling for smooth boundaries
+- Full volume prediction output
