@@ -1,2 +1,3 @@
-# 3D-UNET
-🔬 3D U-Net for volumetric segmentation with intelligent patch-based training. Processes large 3D medical/geological data by breaking into 64³ patches, training efficiently, then reconstructing full volumes. Complete pipeline with 42M parameter model.
+# 3D U-Net for Volumetric Segmentation
+
+A 3D U-Net implementation for volumetric data segmentation using deep learning, with patch-based training for handling large 3D volumes.
